@@ -25,7 +25,9 @@
     ],
     "security": [
         {
-            "default": ["read"]
+            "default": [
+                "read"
+            ]
         }
     ],
     "paths": {
@@ -38,15 +40,18 @@
                 "produces": [
                     "application/json"
                 ],
-                "jsonp": "callback",
-                "cache":{
-                  "statuses":[200]
-                },
-                "config": {
-                  "plugins": {
-                    "policies": ["isLoggedIn", "addTracking", "logThis"]
-                  }
-                },
+                "security": [
+                    {
+                        "default": [
+                            "read"
+                        ]
+                    },
+                    {
+                        "secondary": [
+                            "read"
+                        ]
+                    }
+                ],
                 "parameters": [
                     {
                         "name": "tags",
@@ -94,10 +99,14 @@
                 ],
                 "security": [
                     {
-                        "default": ["write"]
+                        "default": [
+                            "write"
+                        ]
                     },
                     {
-                        "secondary": ["read"]
+                        "secondary": [
+                            "read"
+                        ]
                     }
                 ],
                 "parameters": [
@@ -136,7 +145,9 @@
                 ],
                 "security": [
                     {
-                        "default": ["read"]
+                        "default": [
+                            "read"
+                        ]
                     }
                 ],
                 "parameters": [
@@ -164,7 +175,9 @@
                 "operationId": "deletePet",
                 "security": [
                     {
-                        "default": ["write"]
+                        "default": [
+                            "write"
+                        ]
                     }
                 ],
                 "parameters": [
@@ -194,7 +207,9 @@
                 ],
                 "security": [
                     {
-                        "default": ["read"]
+                        "default": [
+                            "read"
+                        ]
                     }
                 ],
                 "parameters": [
@@ -230,7 +245,9 @@
                 "operationId": "createItemForPet",
                 "security": [
                     {
-                        "default": ["write"]
+                        "default": [
+                            "write"
+                        ]
                     }
                 ],
                 "parameters": [
@@ -268,7 +285,9 @@
                 }
             },
             "parameters": [
-                {"$ref": "#/parameters/id"},
+                {
+                    "$ref": "#/parameters/id"
+                },
                 {
                     "name": "date",
                     "in": "header",
@@ -293,6 +312,8 @@
     "securityDefinitions": {
         "default": {
             "type": "oauth2",
+            "flow": "implicit",
+            "authorizationUrl": "",
             "scopes": {
                 "read": "read pets.",
                 "write": "write pets."
@@ -301,6 +322,8 @@
         },
         "secondary": {
             "type": "oauth2",
+            "flow": "implicit",
+            "authorizationUrl": "",
             "scopes": {
                 "read": "read secondary pets.",
                 "write": "write secondary pets."
