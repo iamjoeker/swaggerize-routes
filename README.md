@@ -23,8 +23,11 @@ const routeBuilder = builder({
 }));
 
 //Promise Style
-routeBuilder.then(routes => {
-    //Use routes
+routeBuilder.then(routeObj => {
+    let { api, routes } = routeObj;
+    // `api` is the resolved swagger api Object ($ref, both remote and local references are resolved)
+    // `routes` - an array of routes corresponding to the swagger api `paths`.
+
 }).catch(error => Assert.ifError(error));
 
 //OR
@@ -37,7 +40,9 @@ builder({
     joischema: true //Set to true if `joischema` need to be used for validators.
 }), (error, routes) => {
     Assert.ifError(error);
-    //Use routes
+    let { api, routes } = routeObj;
+    // `api` is the resolved swagger api Object ($ref and remote and local ref are resolved)
+    // `routes` - an array of routes corresponding to the swagger api `paths`.
 });
 
 ```
@@ -189,21 +194,11 @@ Example:
 
 Handler keys in files do *not* have to be namespaced in this way.
 
-### Default handler
+### Route Object response
 
-The `options.defaulthandler` will set the handler function for all generated routes to one default handler.
+The response route object has two properties - `api` and `routes`.
 
-``` javascript
-var routes = builder({
-    api: require('./api.json'),
-    defaulthandler: function (req, reply) {
-       reply('something');
-    }
-});
-```
-
-
-### Route Object
+`api` is the resolved swagger api object. This has all the resolved $ref values - both local and remote references.
 
 The `routes` array returned from the call to the builder will contain `route` objects. Each `route` has the following properties:
 
@@ -217,7 +212,7 @@ The `routes` array returned from the call to the builder will contain `route` ob
 - `consumes` - same as `consumes` in `api` definition.
 - `produces` - same as `produces` in `api` definition.
 
-### Validator Object
+#### Validator Object
 
 The validator object in the `validators` array will have the following properties:
 
