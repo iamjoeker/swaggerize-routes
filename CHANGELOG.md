@@ -16,5 +16,5 @@
 
 ### Breaking Changes
 
-- Sync to async - `swaggerize-routes` now returns a `promise` that resolves to a [route object] (README.md#route-object-response) (Version `1.x` returns `routes` array). The api also has an optional callback function (instead of the promise api).
+- Sync to async - `swaggerize-routes` now returns a `promise` that resolves to a [route object](README.md#route-object-response) (Version `1.x` returns `routes` array). The api also has an optional callback function (instead of the promise api).
 - The [`validator` object](README.md#validator-object) in the validators array, no longer provides the `schema` property (Version 1.x has the `schema` property, which is the joi schema of the validator). The 2.x version, added a `joischema` property to access the joi schema. Also there is a new `spec` property that provides the json schema (swagger spec) of the parameter/response.
