@@ -1,6 +1,6 @@
 const Test = require('tape');
 const Path = require('path');
-const Buildroutes = require('../lib/builders/routes');
+const BuildRoutes = require('../lib/builders/routes');
 const Parser = require('swagger-parser');
 const Thing = require('core-util-is');
 
@@ -29,24 +29,26 @@ const testRouteMustHave = (routes, t) => {
 const apiResolver = Parser.validate(Path.join(__dirname, './fixtures/defs/pets.json'));
 let routes;
 
-Test('routebuilder_build-directory', t => {
-    routesResolver = Buildroutes(apiResolver, {
+Test('routeBuilder_build-directory', t => {
+    const routesResolver = BuildRoutes(apiResolver, {
         basedir: Path.join(__dirname, 'fixtures'),
         handlers: Path.join(__dirname, 'fixtures/handlers'),
         security: Path.join(__dirname, 'fixtures/extensions')
     });
+
     routesResolver.then(resolved => {
         ({ routes } = resolved);
         t.strictEqual(routes.length, 6, 'added 6 routes.');
         testRoute(routes, t);
         t.end();
+        return;
     }).catch(err => {
         t.error(err);
         t.end();
     });
 });
 
-Test('routerbuilder_security-definitions', t => {
+Test('routerBuilder_security-definitions', t => {
     t.plan(5);
 
     const route = routes[1];
@@ -59,7 +61,7 @@ Test('routerbuilder_security-definitions', t => {
 });
 
 Test('routerBuilder_build-from-x-handler', t => {
-    routesResolver = Buildroutes(apiResolver, {
+    const routesResolver = BuildRoutes(apiResolver, {
         basedir: Path.join(__dirname, 'fixtures')
     });
 
@@ -68,7 +70,7 @@ Test('routerBuilder_build-from-x-handler', t => {
         t.strictEqual(routes.length, 2, 'added 2 routes.');
         testRoute(routes, t);
         t.end();
-
+        return;
     }).catch(err => {
         t.error(err);
         t.end();
@@ -77,7 +79,7 @@ Test('routerBuilder_build-from-x-handler', t => {
 
 
 Test('routerBuild_build-with-object', t => {
-    routesResolver = Buildroutes(apiResolver, {
+    const routesResolver = BuildRoutes(apiResolver, {
         basedir: Path.join(__dirname, 'fixtures'),
         handlers: {
             'pets': {
@@ -100,6 +102,7 @@ Test('routerBuild_build-with-object', t => {
         t.strictEqual(routes.length, 6, 'added 6 routes.');
         testRoute(routes, t);
         t.end();
+        return;
     }).catch(err => {
         t.error(err);
         t.end();
@@ -144,8 +147,7 @@ Test('routerBuilder_route-validator-merge', t => {
 });
 
 Test('routerBuilder_bad-dir', t => {
-
-    routesResolver = Buildroutes(apiResolver, {
+    const routesResolver = BuildRoutes(apiResolver, {
         handlers: 'asdf'
     });
     routesResolver.catch(err => {
@@ -156,7 +158,7 @@ Test('routerBuilder_bad-dir', t => {
 });
 
 Test('routerBuilder_build-with-root-path', function (t) {
-    routesResolver = Buildroutes(Parser.validate(Path.join(__dirname, './fixtures/defs/testroot.json')), {
+    const routesResolver = BuildRoutes(Parser.validate(Path.join(__dirname, './fixtures/defs/testroot.json')), {
         basedir: Path.join(__dirname, 'fixtures'),
         handlers: {
             $get: function () { },
@@ -171,6 +173,7 @@ Test('routerBuilder_build-with-root-path', function (t) {
         t.strictEqual(routes.length, 2, 'added 2 routes.');
         testRouteMustHave(routes, t);
         t.end();
+        return;
     }).catch(err => {
         t.error(err);
         t.end();

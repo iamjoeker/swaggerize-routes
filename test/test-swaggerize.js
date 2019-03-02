@@ -4,7 +4,6 @@ const Parser = require('swagger-parser');
 const Swaggerize = require('../lib/index');
 const Path = require('path');
 
-let routeBuilder;
 Test('configure: fail-no-options', t => {
     t.plan(1);
     t.throws(function () {
@@ -21,8 +20,7 @@ Test('configure: fail no pi definition', t => {
 });
 
 Test('configure: bad api definition', t => {
-
-    routeBuilder = Swaggerize({
+    const routeBuilder = Swaggerize({
         api: require('./fixtures/defs/badapi.json'),
         basedir: Path.join(__dirname, './fixtures')
     });
@@ -36,8 +34,7 @@ Test('configure: bad api definition', t => {
 });
 
 Test('configure: should not fail for missing handler path', t => {
-
-    routeBuilder = Swaggerize({
+    const routeBuilder = Swaggerize({
         api: require('./fixtures/defs/pets.json')
     });
 
@@ -47,6 +44,7 @@ Test('configure: should not fail for missing handler path', t => {
         t.ok(Thing.isArray(routes), 'returns array.');
         t.strictEqual(routes.length, 0, 'routes.length 0.');
         t.end();
+        return;
     }).catch(error => {
         t.error(error);
         t.end();
@@ -54,8 +52,7 @@ Test('configure: should not fail for missing handler path', t => {
 });
 
 Test('configure: api as an object', t => {
-
-    routeBuilder = Swaggerize({
+    const routeBuilder = Swaggerize({
         api: require('./fixtures/defs/pets.json'),
         basedir: Path.join(__dirname, './fixtures')
     });
@@ -65,6 +62,7 @@ Test('configure: api as an object', t => {
         t.ok(Thing.isArray(routes), 'returns array.');
         t.strictEqual(routes.length, 6, 'routes.length 6.');
         t.end();
+        return;
     }).catch(err => {
         t.error(err);
         t.end();
@@ -72,8 +70,7 @@ Test('configure: api as an object', t => {
 });
 
 Test('configure: api path', t => {
-
-    routeBuilder = Swaggerize({
+    const routeBuilder = Swaggerize({
         api: Path.join(__dirname, './fixtures/defs/pets.json'),
         basedir: Path.join(__dirname, './fixtures'),
         handlers: Path.join(__dirname, './fixtures/handlers')
@@ -84,6 +81,7 @@ Test('configure: api path', t => {
         t.ok(Thing.isArray(routes), 'returns array.');
         t.strictEqual(routes.length, 6, 'routes.length 6.');
         t.end();
+        return;
     }).catch(err => {
         t.error(err);
         t.end();
@@ -91,8 +89,7 @@ Test('configure: api path', t => {
 });
 
 Test('configure: fail wrong api path', t => {
-
-    routeBuilder = Swaggerize({
+    const routeBuilder = Swaggerize({
         api: 'wrongpath'
     });
 
@@ -104,9 +101,8 @@ Test('configure: fail wrong api path', t => {
 });
 
 Test('configure: validated api', t => {
-
-    let apiResolver = Parser.validate(Path.join(__dirname, './fixtures/defs/pets.json'));
-    routeBuilder = Swaggerize({
+    const apiResolver = Parser.validate(Path.join(__dirname, './fixtures/defs/pets.json'));
+    const routeBuilder = Swaggerize({
         validated: true,
         api: apiResolver,
         basedir: Path.join(__dirname, './fixtures'),
@@ -118,6 +114,7 @@ Test('configure: validated api', t => {
         t.ok(Thing.isArray(routes), 'returns array.');
         t.strictEqual(routes.length, 6, 'routes.length 6.');
         t.end();
+        return;
     }).catch(err => {
         t.error(err);
         t.end();
@@ -125,7 +122,6 @@ Test('configure: validated api', t => {
 });
 
 Test('configure: callback response', t => {
-
     Swaggerize({
         api: Path.join(__dirname, './fixtures/defs/pets.json'),
         basedir: Path.join(__dirname, './fixtures'),
@@ -141,7 +137,6 @@ Test('configure: callback response', t => {
 
 
 Test('handlers: absolute path', t => {
-
     Swaggerize({
         api: require('./fixtures/defs/pets.json'),
         handlers: Path.join(__dirname, './fixtures/handlers')
@@ -150,6 +145,7 @@ Test('handlers: absolute path', t => {
         t.ok(api, 'Resolved api from absolute handler path');
         t.ok(Thing.isArray(routes), 'constructed routes from absolute handler path');
         t.end();
+        return;
     }).catch(error => {
         t.error(error);
         t.end();
@@ -166,6 +162,7 @@ Test('handlers: relative path', t => {
         t.ok(api, 'Resolved api from relative handler path');
         t.ok(Thing.isArray(routes), 'constructed routes from relative handler path');
         t.end();
+        return;
     }).catch(error => {
         t.error(error);
         t.end();
@@ -182,6 +179,7 @@ Test('handlers: empty path', t => {
         let { routes } = routeObj;
         t.ok(Thing.isArray(routes), 'constructed routes from empty handler path');
         t.end();
+        return;
     }).catch(error => {
         t.error(error);
         t.end();
@@ -197,6 +195,7 @@ Test('handlers: relative path with basedir', t => {
         let { routes } = routeObj;
         t.ok(Thing.isArray(routes), 'constructed routes from relative handler path with basedir');
         t.end();
+        return;
     }).catch(error => {
         t.error(error);
         t.end();
@@ -211,6 +210,7 @@ Test('handlers: basedir with no handlers property', t => {
         let { routes } = routeObj;
         t.ok(Thing.isArray(routes), 'constructed routes from basedir with no handlers property');
         t.end();
+        return;
     }).catch(error => {
         t.error(error);
         t.end();
@@ -235,6 +235,7 @@ Test('handlers: handlers as object', t => {
         t.ok(Thing.isFunction(routes[0].handler), 'handler function');
         t.strictEqual(routes[0].handler(), 'hi', 'Ok handler function execution.');
         t.end();
+        return;
     }).catch(error => {
         t.error(error);
         t.end();
