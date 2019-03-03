@@ -26,17 +26,17 @@ Test('utils_unprefix', function (t) {
 
     var str = 'foobar';
 
-    str = Utils.unprefix(str, 'foo');
+    str = Utils.unPrefix(str, 'foo');
 
     t.equal(str, 'bar', 'string had prefix so is changed.');
 
     str = 'bar';
 
-    str = Utils.unprefix(str, 'foo');
+    str = Utils.unPrefix(str, 'foo');
 
     t.equal(str, 'bar', 'string did not have prefix so was not changed.');
 
-    t.equal(Utils.unprefix(undefined, 'foo'), '', 'handled undefined.');
+    t.equal(Utils.unPrefix(undefined, 'foo'), '', 'handled undefined.');
 });
 
 Test('utils_suffix', function (t) {
@@ -62,17 +62,17 @@ Test('utils_unsuffix', function (t) {
 
     var str = 'foobar';
 
-    str = Utils.unsuffix(str, 'bar');
+    str = Utils.unSuffix(str, 'bar');
 
     t.equal(str, 'foo', 'string had suffix so is changed.');
 
     str = 'foo';
 
-    str = Utils.unsuffix(str, 'bar');
+    str = Utils.unSuffix(str, 'bar');
 
     t.equal(str, 'foo', 'string did not have suffix so was not changed.');
 
-    t.equal(Utils.unsuffix(undefined, 'foo'), '', 'handled undefined.');
+    t.equal(Utils.unSuffix(undefined, 'foo'), '', 'handled undefined.');
 });
 
 Test('utiles_ends-with', function (t) {
