@@ -1,12 +1,12 @@
 {
   "name": "@iamjoeker/swaggerize-routes",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Trevor Livingston <trlivingston@paypal.com>",
   "contributors": [
-    "Joseph Kerby <work@joekerby.net>",
     "Trevor Livingston <trlivingston@paypal.com>",
     "Subeesh Chothendavida <subeeshcbabu@yahoo.co.in>",
-    "Francois-Guillaume Ribreau <npm@fgribreau.com>"
+    "Francois-Guillaume Ribreau <npm@fgribreau.com>",
+    "Joseph Kerby <work@joekerby.net>"
   ],
   "description": "Swagger based route building.",
   "license": "Apache-2.0",
@@ -26,10 +26,10 @@
     "debuglog": "^1.0.1",
     "merge-object-files": "^1.0.3",
     "swagger-parser": "^3.4.2",
-    "swagvali": "^1.0.1"
+    "swagvali": "github:iamjoeker/swagvali#fix/file-on-responses"
   },
   "devDependencies": {
-    "eslint": "^5.15.0",
+    "eslint": "^5.15.1",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-security": "^1.4.0",
