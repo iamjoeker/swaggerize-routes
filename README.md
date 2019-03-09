@@ -1,7 +1,7 @@
 # swaggerize-routes (formerly swaggerize-builder)
 
-[![Build Status](https://travis-ci.org/krakenjs/swaggerize-routes.svg?branch=master)](https://travis-ci.org/krakenjs/swaggerize-routes)
-[![NPM version](https://badge.fury.io/js/swaggerize-routes.png)](http://badge.fury.io/js/swaggerize-routes)
+![Actions Status](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/badge/iamjoeker/swaggerize-routes)
+[![npm version](https://badge.fury.io/js/%40iamjoeker%2Fswaggerize-routes.svg)](https://badge.fury.io/js/%40iamjoeker%2Fswaggerize-routes)
 
 `swaggerize-routes` is a component used by [swaggerize-express](https://github.com/krakenjs/swaggerize-express) and [swaggerize-hapi](https://github.com/krakenjs/swaggerize-hapi) for parsing and building route definitions based on a [Swagger 2.0 document](https://github.com/wordnik/swagger-spec/blob/master/versions/2.0.md).
 
@@ -21,7 +21,7 @@ const routeBuilder = builder({
     api: require('./api.json'),
     handlers: './handlers',
     security: './security' //Optional - security authorize handlers as per `securityDefinitions`
-}));
+});
 
 //Promise Style
 routeBuilder.then(routeObj => {
@@ -39,7 +39,7 @@ builder({
     handlers: './handlers',
     security: './security', //Optional - security authorize handlers as per `securityDefinitions`
     joischema: true //Set to true if `joischema` need to be used for validators.
-}), (error, routes) => {
+}, (error, routes) => {
     Assert.ifError(error);
     let { api, routes } = routeObj;
     // `api` is the resolved swagger api Object ($ref and remote and local ref are resolved)

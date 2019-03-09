@@ -1,35 +1,35 @@
 {
   "name": "@iamjoeker/swaggerize-routes",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Trevor Livingston <trlivingston@paypal.com>",
   "contributors": [
-    "Joseph Kerby <work@joekerby.net>",
     "Trevor Livingston <trlivingston@paypal.com>",
     "Subeesh Chothendavida <subeeshcbabu@yahoo.co.in>",
-    "Francois-Guillaume Ribreau <npm@fgribreau.com>"
+    "Francois-Guillaume Ribreau <npm@fgribreau.com>",
+    "Joseph Kerby <work@joekerby.net>"
   ],
   "description": "Swagger based route building.",
   "license": "Apache-2.0",
   "main": "./lib/index",
   "repository": {
     "type": "git",
-    "url": "git://github.com/iamjoeker/swaggerize-builder.git"
+    "url": "git://github.com/iamjoeker/swaggerize-routes.git"
   },
-  "bugs": "http://github.com/iamjoeker/swaggerize-builder/issues",
+  "bugs": "http://github.com/iamjoeker/swaggerize-routes/issues",
   "engines": {
     "node": ">=6.x"
   },
   "dependencies": {
+    "@iamjoeker/swagvali": "^1.0.2",
     "call-me-maybe": "^1.0.1",
     "caller": "^1.0.1",
     "core-util-is": "^1.0.2",
     "debuglog": "^1.0.1",
-    "merge-object-files": "^1.0.3",
-    "swagger-parser": "^3.4.2",
-    "swagvali": "^1.0.1"
+    "merge-object-files": "^2.0.0",
+    "swagger-parser": "^6.0.5"
   },
   "devDependencies": {
-    "eslint": "^5.15.0",
+    "eslint": "^5.15.1",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-security": "^1.4.0",
